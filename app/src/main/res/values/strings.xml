@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TodoAPP</string>
+    <string name="log_in">Log in</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="entrar">Entrar</string>
+    <string name="criar_conta">Criar Conta</string>
+    <string name="nome_completo">Nome completo</string>
+    <string name="senha">Senha</string>
+    <string name="confirmar_senha">Confirmar senha</string>
+    <string name="criar">Criar</string>
+</resources>
