@@ -44,6 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
+                android:inputType="textEmailAddress"
                 android:id="@+id/text_input_edit_create_account_email"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,6 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/senha"
+                android:inputType="textPassword"
                 android:id="@+id/text_input_edit_create_account_password"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,6 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/confirmar_senha"
+                android:inputType="textPassword"
                 android:id="@+id/text_input_edit_create_account_confirm_password"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,7 +83,6 @@
             android:layout_marginTop="30dp"
             android:layout_marginHorizontal="50dp"
             android:id="@+id/button_create_account_create"/>
-
 
     </LinearLayout>
 
