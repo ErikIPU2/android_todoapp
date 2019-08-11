@@ -17,8 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:gravity="center"
-            android:text="@string/log_in"
-            android:textSize="50sp" />
+            android:text="@string/criar_uma_conta"
+            android:textSize="45sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
