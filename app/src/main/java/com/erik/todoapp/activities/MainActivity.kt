@@ -1,17 +1,13 @@
 package com.erik.todoapp.activities
 
-import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.BaseColumns
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import com.erik.todoapp.R
-import com.erik.todoapp.database.DbHelper
-import com.erik.todoapp.database.todo.TodoContract
-import com.erik.todoapp.database.user.UserContract
+import com.erik.todoapp.database.DbOperationHelper
+import com.erik.todoapp.util.data.User
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         this.viewHolder.createAccountButton.setOnClickListener { view ->
             startActivity(Intent(this, CreateAccountActivity::class.java))
         }
+        
     }
 
 }
