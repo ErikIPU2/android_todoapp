@@ -9,4 +9,6 @@
     <string name="senha">Senha</string>
     <string name="confirmar_senha">Confirmar senha</string>
     <string name="criar">Criar</string>
+    <string name="voce_precisa_digitar_o_email">Você precisa digitar o email</string>
+    <string name="voce_precisa_digitar_a_senha">Você precisa digitar a senha</string>
 </resources>

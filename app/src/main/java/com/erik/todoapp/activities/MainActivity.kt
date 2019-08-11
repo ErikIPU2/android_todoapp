@@ -3,6 +3,7 @@ package com.erik.todoapp.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import com.erik.todoapp.R
@@ -15,9 +16,9 @@ class MainActivity : AppCompatActivity() {
 
     private data class ViewHolder(
             val emailTextInputLayout: TextInputLayout,
-            val emailTextInputEditText: TextInputEditText,
-
             val passwordTextInputLayout: TextInputLayout,
+
+            val emailTextInputEditText: TextInputEditText,
             val passwordTextInputEditText: TextInputEditText,
 
             val enterButton: Button,
@@ -32,8 +33,8 @@ class MainActivity : AppCompatActivity() {
 
         this.viewHolder = ViewHolder(
             findViewById(R.id.text_input_layout_main_email),
-            findViewById(R.id.text_input_edit_main_email),
             findViewById(R.id.text_input_layout_main_password),
+            findViewById(R.id.text_input_edit_main_email),
             findViewById(R.id.text_input_edit_main_password),
             findViewById(R.id.button_main_enter),
             findViewById(R.id.button_main_createAccount)
@@ -43,6 +44,33 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, CreateAccountActivity::class.java))
         }
 
+        this.viewHolder.enterButton.setOnClickListener(this.EnterButtonOnClick)
+    }
+
+    private val EnterButtonOnClick = View.OnClickListener { view ->
+        this.checkInputs()
+    }
+
+    private fun checkInputs():Boolean {
+        val email:String = viewHolder.emailTextInputEditText.text.toString()
+        val password:String = viewHolder.passwordTextInputEditText.text.toString()
+
+        var isOkay = true
+
+        if (email.isEmpty()) {
+            isOkay = false
+            viewHolder.emailTextInputLayout.error = getString(R.string.voce_precisa_digitar_o_email)
+        } else {
+            viewHolder.emailTextInputLayout.error = null
+        }
+        if (password.isEmpty()) {
+            isOkay = false
+            viewHolder.passwordTextInputLayout.error = getString(R.string.voce_precisa_digitar_a_senha)
+        } else {
+            viewHolder.passwordTextInputLayout.error = null
+        }
+
+        return isOkay
     }
 
 }

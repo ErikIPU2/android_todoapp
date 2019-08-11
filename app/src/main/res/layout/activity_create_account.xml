@@ -7,6 +7,15 @@
     android:orientation="vertical"
     tools:context=".activities.CreateAccountActivity">
 
+    <Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </Toolbar>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
