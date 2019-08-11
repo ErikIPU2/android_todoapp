@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,66 +7,81 @@
     android:orientation="vertical"
     tools:context=".activities.CreateAccountActivity">
 
-    <Toolbar
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="@string/log_in"
+            android:textSize="50sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="75dp"
+            android:layout_marginHorizontal="50dp"
+            app:errorEnabled="true"
+            android:id="@+id/text_input_layout_create_account_complete_name">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/nome_completo"
+                android:id="@+id/text_input_edit_create_account_complete_name"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            app:errorEnabled="true"
+            android:id="@+id/text_input_layout_create_account_email">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                android:id="@+id/text_input_edit_create_account_email"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            app:errorEnabled="true"
+            android:id="@+id/text_input_layout_create_account_password">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/senha"
+                android:id="@+id/text_input_edit_create_account_password"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            app:errorEnabled="true"
+            android:id="@+id/text_input_layout_create_account_confirm_password">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/confirmar_senha"
+                android:id="@+id/text_input_edit_create_account_confirm_password"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </Toolbar>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:text="@string/log_in"
-        android:textSize="50sp" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/nome_completo"
-        android:layout_marginTop="50dp"
-        android:layout_marginHorizontal="50dp"
-        android:id="@+id/edit_createaccount_completename"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/email"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="50dp"
-        android:id="@+id/edit_createaccount_email"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/senha"
-        android:inputType="textPassword"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="50dp"
-        android:id="@+id/edit_createaccount_password"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/confirmar_senha"
-        android:inputType="textPassword"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="50dp"
-        android:id="@+id/edit_createaccount_confirmpassword"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/criar"
-        android:layout_marginTop="30dp"
-        android:layout_marginHorizontal="50dp"
-        android:id="@+id/button_createaccount_create"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/criar"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="50dp"
+            android:id="@+id/button_create_account_create"/>
 
 
+    </LinearLayout>
 
-
-</LinearLayout>
+</ScrollView>
