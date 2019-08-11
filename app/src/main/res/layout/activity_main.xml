@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -17,36 +16,36 @@
         android:textSize="50sp" />
 
     <EditText
+        android:id="@+id/edit_main_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/email"
-        android:layout_marginTop="100dp"
         android:layout_marginHorizontal="50dp"
-        android:id="@+id/edit_main_email"/>
+        android:layout_marginTop="100dp"
+        android:hint="@string/email" />
 
     <EditText
+        android:id="@+id/edit_main_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/password"
-        android:inputType="textPassword"
+        android:layout_marginHorizontal="50dp"
         android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="50dp"
-        android:id="@+id/edit_main_password"/>
+        android:hint="@string/password"
+        android:inputType="textPassword" />
 
     <Button
+        android:id="@+id/button_main_enter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/entrar"
+        android:layout_marginHorizontal="50dp"
         android:layout_marginTop="30dp"
-        android:layout_marginHorizontal="50dp"
-        android:id="@+id/button_main_enter"/>
+        android:text="@string/entrar" />
 
     <Button
+        android:id="@+id/button_main_createAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/criar_conta"
-        android:layout_marginTop="5dp"
         android:layout_marginHorizontal="50dp"
-        android:id="@+id/button_main_createAccount"/>
+        android:layout_marginTop="5dp"
+        android:text="@string/criar_conta" />
 
 </LinearLayout>

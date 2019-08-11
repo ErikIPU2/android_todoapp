@@ -1,11 +1,17 @@
 package com.erik.todoapp.activities
 
+import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.BaseColumns
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.erik.todoapp.R
+import com.erik.todoapp.database.DbHelper
+import com.erik.todoapp.database.todo.TodoContract
+import com.erik.todoapp.database.user.UserContract
 
 class MainActivity : AppCompatActivity() {
 
