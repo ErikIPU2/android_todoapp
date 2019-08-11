@@ -8,12 +8,17 @@ import android.widget.EditText
 import com.erik.todoapp.R
 import com.erik.todoapp.database.DbOperationHelper
 import com.erik.todoapp.util.data.User
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
 class MainActivity : AppCompatActivity() {
 
     private data class ViewHolder(
-            val emailEditText: EditText,
-            val passwordEditText: EditText,
+            val emailTextInputLayout: TextInputLayout,
+            val emailTextInputEditText: TextInputEditText,
+
+            val passwordTextInputLayout: TextInputLayout,
+            val passwordTextInputEditText: TextInputEditText,
 
             val enterButton: Button,
             val createAccountButton: Button
@@ -26,16 +31,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         this.viewHolder = ViewHolder(
-                findViewById(R.id.edit_main_email),
-                findViewById(R.id.edit_main_password),
-                findViewById(R.id.button_main_enter),
-                findViewById(R.id.button_main_createAccount)
+            findViewById(R.id.text_input_layout_main_email),
+            findViewById(R.id.text_input_edit_main_email),
+            findViewById(R.id.text_input_layout_main_password),
+            findViewById(R.id.text_input_edit_main_password),
+            findViewById(R.id.button_main_enter),
+            findViewById(R.id.button_main_createAccount)
         )
 
         this.viewHolder.createAccountButton.setOnClickListener { view ->
             startActivity(Intent(this, CreateAccountActivity::class.java))
         }
-        
+
     }
 
 }

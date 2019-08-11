@@ -15,22 +15,39 @@
         android:text="@string/log_in"
         android:textSize="50sp" />
 
-    <EditText
-        android:id="@+id/edit_main_email"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_main_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="50dp"
         android:layout_marginTop="100dp"
-        android:hint="@string/email" />
+        app:errorEnabled="true">
 
-    <EditText
-        android:id="@+id/edit_main_password"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_input_edit_main_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="@string/email"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_main_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="50dp"
-        android:layout_marginTop="10dp"
-        android:hint="@string/password"
-        android:inputType="textPassword" />
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_input_edit_main_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:inputType="textPassword"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/button_main_enter"
