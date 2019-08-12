@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activities.CreateAccountActivity">
     <item
-        android:id="@+id/action_back"
-        android:tint="#ffffff"
+        android:id="@+id/action_create_account_back"
         android:icon="@drawable/ic_arrow_back_black_24dp"
         android:title="@string/voltar"
         app:showAsAction="ifRoom"/>

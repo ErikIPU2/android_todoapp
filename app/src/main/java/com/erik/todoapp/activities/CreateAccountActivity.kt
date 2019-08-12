@@ -3,11 +3,15 @@ package com.erik.todoapp.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.erik.todoapp.R
+import com.erik.todoapp.util.Session
+import com.erik.todoapp.util.data.User
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
@@ -30,10 +34,13 @@ class CreateAccountActivity : AppCompatActivity() {
     )
 
     private lateinit var viewHolder:ViewHolder
+    private lateinit var session:Session
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_account)
+
+        this.session = Session(this)
 
         this.viewHolder = ViewHolder(
             findViewById(R.id.text_input_layout_create_account_complete_name),
@@ -59,9 +66,29 @@ class CreateAccountActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.action_create_account_back -> {
+            this.close()
+            true
+        } else -> {
+            super.onOptionsItemSelected(item)
+        }
+    }
+
     private val createButtonOnClick = View.OnClickListener { view ->
-        if (this.checkInputs()) {
-            this.checkPasswords()
+        if (this.checkInputs() && this.checkPasswords()) {
+            val completeName:String = viewHolder.completeNameTextInputEditText.text.toString()
+            val email:String = viewHolder.emailTextInputEditText.text.toString()
+            val password:String = viewHolder.passwordTextInputEditText.text.toString()
+
+            val user = User(null, completeName, email, password)
+
+            if (session.signIn(user)) {
+                this.close()
+            } else {
+                viewHolder.emailTextInputLayout.error = getString(
+                    R.string.ja_existe_esse_email_cadastrado)
+            }
         }
     }
 
@@ -111,13 +138,21 @@ class CreateAccountActivity : AppCompatActivity() {
         val password:String = viewHolder.passwordTextInputEditText.text.toString()
         val confirmPassword:String = viewHolder.confirmPasswordTextInputEditText.text.toString()
 
-        if (password != confirmPassword) {
-            viewHolder.confirmPasswordTextInputLayout.error = getString(
-                R.string.as_senhas_nao_sao_iguais)
-            return false
+        if (password.isNotEmpty() && confirmPassword.isNotEmpty()) {
+            if (password != confirmPassword) {
+                viewHolder.confirmPasswordTextInputLayout.error = getString(
+                    R.string.as_senhas_nao_sao_iguais)
+                return false
+            } else {
+                viewHolder.confirmPasswordTextInputLayout.error = null
+                return true
+            }
         } else {
-            viewHolder.confirmPasswordTextInputLayout.error = null
-            return true
+            return false
         }
+    }
+
+    private fun close() {
+        this.finish()
     }
 }
