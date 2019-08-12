@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         this.session = Session(this)
-        System.out.println(this.session.login("erikborella@gmail.com", "123"))
 
         this.viewHolder = ViewHolder(
             findViewById(R.id.text_input_layout_main_email),
