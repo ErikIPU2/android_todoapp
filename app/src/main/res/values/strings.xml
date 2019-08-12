@@ -17,4 +17,7 @@
     <string name="as_senhas_nao_sao_iguais">As senhas não são iguais</string>
     <string name="voltar">Voltar</string>
     <string name="sair">Sair</string>
+    <string name="ja_existe_esse_email_cadastrado">Já existe esse email cadastrado</string>
+    <string name="lista_de_tarefas">Lista de Tarefas</string>
+    <string name="informacoes_incoretas">Informações incoretas</string>
 </resources>

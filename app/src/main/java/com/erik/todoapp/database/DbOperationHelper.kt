@@ -56,6 +56,43 @@ class DbOperationHelper(context: Context) {
         return users.toTypedArray()
     }
 
+    fun getUsers(email:String): Array<User> {
+        val db = dbHelper.readableDatabase
+
+        val projection = arrayOf(BaseColumns._ID, UserEntry.COLUMN_NAME_NAME,
+            UserEntry.COLUMN_NAME_EMAIL, UserEntry.COLUMN_NAME_PASSWORD)
+
+        val selection = "${UserEntry.COLUMN_NAME_EMAIL} = ?"
+        val selectionArgs = arrayOf(email)
+
+        val cursor = db.query(
+            UserEntry.TABLE_NAME,
+            projection,
+            selection,
+            selectionArgs,
+            null,
+            null,
+            null
+        )
+
+        val users = mutableListOf<User>()
+
+        with(cursor) {
+            while (moveToNext()) {
+                val id = getLong(getColumnIndex(BaseColumns._ID))
+                val name = getString(getColumnIndex(UserEntry.COLUMN_NAME_NAME))
+                val password = getString(getColumnIndex(UserEntry.COLUMN_NAME_PASSWORD))
+                val email = getString(getColumnIndex(UserEntry.COLUMN_NAME_EMAIL))
+
+                val user = User(id, name, email, password)
+                users.add(user)
+            }
+        }
+
+        return users.toTypedArray()
+
+    }
+
     fun getUser(email:String, password:String):User? {
         val db = dbHelper.readableDatabase
 
