@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import com.erik.todoapp.R
 import com.erik.todoapp.database.DbOperationHelper
+import com.erik.todoapp.util.Session
 import com.erik.todoapp.util.data.User
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -26,10 +27,14 @@ class MainActivity : AppCompatActivity() {
     )
 
     private lateinit var viewHolder: ViewHolder
+    private lateinit var session: Session
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        this.session = Session(this)
+        System.out.println(this.session.login("erikborella@gmail.com", "123"))
 
         this.viewHolder = ViewHolder(
             findViewById(R.id.text_input_layout_main_email),

@@ -55,4 +55,72 @@ class DbOperationHelper(context: Context) {
 
         return users.toTypedArray()
     }
+
+    fun getUser(email:String, password:String):User? {
+        val db = dbHelper.readableDatabase
+
+        val projection = arrayOf(BaseColumns._ID, UserEntry.COLUMN_NAME_NAME,
+            UserEntry.COLUMN_NAME_EMAIL, UserEntry.COLUMN_NAME_PASSWORD)
+
+        val selection = "${UserEntry.COLUMN_NAME_EMAIL} = ? AND " +
+                "${UserEntry.COLUMN_NAME_PASSWORD} = ?"
+        val selectionArgs = arrayOf(email, password)
+
+        val cursor = db.query(
+            UserEntry.TABLE_NAME,
+            projection,
+            selection,
+            selectionArgs,
+            null,
+            null,
+            null
+        )
+
+        with(cursor) {
+            return if (count == 0) {
+                null
+            } else {
+                moveToFirst()
+                val id = getLong(getColumnIndexOrThrow(BaseColumns._ID))
+                val name = getString(getColumnIndexOrThrow(UserEntry.COLUMN_NAME_NAME))
+                val email = getString(getColumnIndexOrThrow(UserEntry.COLUMN_NAME_EMAIL))
+                val password = getString(getColumnIndexOrThrow(UserEntry.COLUMN_NAME_PASSWORD))
+                User(id, name, email, password)
+            }
+        }
+
+    }
+
+    public fun getUser(id: Long): User? {
+        val db  = dbHelper.readableDatabase
+
+        val projection = arrayOf(BaseColumns._ID, UserEntry.COLUMN_NAME_NAME,
+            UserEntry.COLUMN_NAME_EMAIL, UserEntry.COLUMN_NAME_PASSWORD)
+
+        val selection = "${BaseColumns._ID} = ?"
+        val selectionArgs = arrayOf(id.toString())
+
+        val cursor = db.query(
+            UserEntry.TABLE_NAME,
+            projection,
+            selection,
+            selectionArgs,
+            null,
+            null,
+            null
+        )
+
+        with(cursor) {
+            return if (count == 0) {
+                null
+            } else  {
+                moveToFirst()
+                val id = getLong(getColumnIndexOrThrow(BaseColumns._ID))
+                val name = getString(getColumnIndexOrThrow(UserEntry.COLUMN_NAME_NAME))
+                val email = getString(getColumnIndexOrThrow(UserEntry.COLUMN_NAME_EMAIL))
+                val password = getString(getColumnIndexOrThrow(UserEntry.COLUMN_NAME_PASSWORD))
+                User(id, name, email, password)
+            }
+        }
+    }
 }
