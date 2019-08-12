@@ -20,7 +20,7 @@
             android:background="?attr/colorPrimary"
             android:elevation="4dp"
             app:titleTextColor="#ffffff"
-
+            app:theme="@style/ToolbarColoredBackArrow"
             app:title="@string/criar_conta"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />

@@ -57,25 +57,12 @@ class CreateAccountActivity : AppCompatActivity() {
 
             findViewById(R.id.toolbar_create_account_toolbar)
         )
-        setSupportActionBar(viewHolder.toolbar)
 
+        setSupportActionBar(viewHolder.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         viewHolder.createButton.setOnClickListener(this.createButtonOnClick)
     }
-
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.menu_create_account_itens, menu)
-//        return true
-//    }
-
-//    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-//        R.id.action_create_account_back -> {
-//            this.close()
-//            true
-//        } else -> {
-//            super.onOptionsItemSelected(item)
-//        }
-//    }
 
     private val createButtonOnClick = View.OnClickListener { view ->
         if (this.checkInputs() && this.checkPasswords()) {
