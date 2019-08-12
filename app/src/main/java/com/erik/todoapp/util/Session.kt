@@ -15,7 +15,7 @@ class Session(context: Context) {
 
     var loggedUser:User? = this.update()
 
-    public fun login(email: String, password: String): Boolean {
+    fun login(email: String, password: String): Boolean {
         val user:User? = dbOperationHelper.getUser(email, password)
 
         return if (user != null) {
@@ -31,7 +31,7 @@ class Session(context: Context) {
         }
     }
 
-    public fun logout():Unit {
+    fun logout():Unit {
         val editor:SharedPreferences.Editor = sharedPreferences.edit()
 
         editor.remove(LOGGED_ID)
@@ -40,7 +40,7 @@ class Session(context: Context) {
         this.update()
     }
 
-    public fun isLogged():Boolean = this.loggedUser != null
+    fun isLogged():Boolean = this.loggedUser != null
 
     private fun update():User? {
         val id:Long = this.sharedPreferences.getLong(LOGGED_ID, -1)
