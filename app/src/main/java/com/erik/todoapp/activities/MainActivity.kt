@@ -52,8 +52,29 @@ class MainActivity : AppCompatActivity() {
         this.viewHolder.enterButton.setOnClickListener(this.EnterButtonOnClick)
     }
 
+    override fun onResume() {
+        super.onResume()
+        this.checkLoggedAndOpenTodoActivity()
+    }
+
+    private fun checkLoggedAndOpenTodoActivity(): Unit {
+        this.session.updateLogged()
+        if (this.session.isLogged()) {
+            startActivity(Intent(this, TodoActivity::class.java))
+        }
+    }
+
     private val EnterButtonOnClick = View.OnClickListener { view ->
-        this.checkInputs()
+        if (this.checkInputs()) {
+            val email:String = viewHolder.emailTextInputEditText.text.toString()
+            val password:String = viewHolder.passwordTextInputEditText.text.toString()
+
+            if (this.session.login(email, password)) {
+                this.checkLoggedAndOpenTodoActivity()
+            } else {
+                viewHolder.emailTextInputLayout.error = getString(R.string.informacoes_incoretas)
+            }
+        }
     }
 
     private fun checkInputs():Boolean {
