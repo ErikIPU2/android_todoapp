@@ -8,7 +8,7 @@ import androidx.appcompat.widget.Toolbar
 import com.erik.todoapp.R
 import com.erik.todoapp.util.Session
 
-class todoActivity : AppCompatActivity() {
+class TodoActivity : AppCompatActivity() {
 
     private data class ViewHolder(
         val toolbar: Toolbar
@@ -38,6 +38,7 @@ class todoActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_todo_logout -> {
             this.session.logout()
+            this.close()
             true
         } else -> {
             super.onOptionsItemSelected(item)
