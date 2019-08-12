@@ -21,7 +21,7 @@ class Session(context: Context) {
         return if (user != null) {
             val editor:SharedPreferences.Editor = sharedPreferences.edit()
             editor.putLong(LOGGED_ID, user.id!!)
-            editor.apply()
+            editor.commit()
 
             this.loggedUser = user
 
@@ -31,16 +31,31 @@ class Session(context: Context) {
         }
     }
 
+    fun signIn(user: User): Boolean {
+        val users = dbOperationHelper.getUsers(user.email)
+        return if (users.size > 0) {
+            false
+        } else {
+            dbOperationHelper.addUser(user)
+            // this maybe return true if all be correct
+            return this.login(user.email, user.password)
+        }
+    }
+
     fun logout():Unit {
         val editor:SharedPreferences.Editor = sharedPreferences.edit()
 
         editor.remove(LOGGED_ID)
-        editor.apply()
+        editor.commit()
 
-        this.update()
+         this.loggedUser = this.update()
     }
 
     fun isLogged():Boolean = this.loggedUser != null
+
+    public fun updateLogged() {
+        this.loggedUser = this.update()
+    }
 
     private fun update():User? {
         val id:Long = this.sharedPreferences.getLong(LOGGED_ID, -1)
