@@ -2,9 +2,11 @@ package com.erik.todoapp.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.widget.Toolbar
 import com.erik.todoapp.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -22,7 +24,9 @@ class CreateAccountActivity : AppCompatActivity() {
             val passwordTextInputEditText: TextInputEditText,
             val confirmPasswordTextInputEditText: TextInputEditText,
 
-            val createButton: Button
+            val createButton: Button,
+
+            val toolbar: Toolbar
     )
 
     private lateinit var viewHolder:ViewHolder
@@ -42,10 +46,17 @@ class CreateAccountActivity : AppCompatActivity() {
             findViewById(R.id.text_input_edit_create_account_password),
             findViewById(R.id.text_input_edit_create_account_confirm_password),
 
-            findViewById(R.id.button_create_account_create)
-        )
+            findViewById(R.id.button_create_account_create),
 
+            findViewById(R.id.toolbar_create_account_toolbar)
+        )
+        setSupportActionBar(viewHolder.toolbar)
         viewHolder.createButton.setOnClickListener(this.createButtonOnClick)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_create_account_itens, menu)
+        return true
     }
 
     private val createButtonOnClick = View.OnClickListener { view ->

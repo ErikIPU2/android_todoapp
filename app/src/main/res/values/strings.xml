@@ -15,4 +15,6 @@
     <string name="voce_precisa_digitar_o_seu_nome">Você precisa digitar o seu nome</string>
     <string name="voce_precisa_confirmar_a_senha">Voce precisa confirmar a senha</string>
     <string name="as_senhas_nao_sao_iguais">As senhas não são iguais</string>
+    <string name="voltar">Voltar</string>
+    <string name="sair">Sair</string>
 </resources>
