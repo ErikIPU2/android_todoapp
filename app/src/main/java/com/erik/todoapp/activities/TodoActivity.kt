@@ -1,5 +1,6 @@
 package com.erik.todoapp.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -52,7 +53,7 @@ class TodoActivity : AppCompatActivity() {
     }
 
     private val fabAddTodoOnClick = View.OnClickListener { view ->
-        Toast.makeText(this, "Tu APERTOU NO FAB MANOOOOOOOOOOOOOOOOOOOOO", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this, CreateTodoActivity::class.java))
     }
 
     private fun close() {

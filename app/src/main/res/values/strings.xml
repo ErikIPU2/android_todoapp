@@ -20,4 +20,12 @@
     <string name="ja_existe_esse_email_cadastrado">Já existe esse email cadastrado</string>
     <string name="lista_de_tarefas">Lista de Tarefas</string>
     <string name="informacoes_incoretas">Informações incoretas</string>
+    <string name="nove_tarefa">Nova Tarefa</string>
+    <string name="titulo">Titulo</string>
+    <string name="selecione_a_data">Selecione a data</string>
+    <string name="alta">Alta</string>
+    <string name="media">Media</string>
+    <string name="baixa">Baixa</string>
+    <string name="prioridade">Prioridade</string>
+    <string name="salvar">Salvar</string>
 </resources>
