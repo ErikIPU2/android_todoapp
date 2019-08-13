@@ -1,6 +1,6 @@
-package com.erik.todoapp.util;
+package com.erik.todoapp.util.time;
 
-public class DataTime {
+public class Data {
     private int dia;
     private int mes;
     private  int ano;
@@ -76,6 +76,18 @@ public class DataTime {
         data.append(this.returnValueWithZero(this.mes, 2));
         data.append("/");
         data.append(this.returnValueWithZero(this.ano, 4));
+
+        return data.toString();
+    }
+
+    public String getFormatDataUniversal() {
+        StringBuilder data = new StringBuilder("");
+
+        data.append(this.returnValueWithZero(this.ano, 4));
+        data.append("/");
+        data.append(this.returnValueWithZero(this.mes, 2));
+        data.append("/");
+        data.append(this.returnValueWithZero(this.dia, 2));
 
         return data.toString();
     }

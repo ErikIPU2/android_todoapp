@@ -28,4 +28,8 @@
     <string name="baixa">Baixa</string>
     <string name="prioridade">Prioridade</string>
     <string name="salvar">Salvar</string>
+    <string name="voce_precisa_informar_o_titulo">Voce precisa infomar o titulo</string>
+    <string name="voce_precisa_informar_a_data">Voce precisa informar a data</string>
+    <string name="ocorreu_algum_erro">Ocorreu algum erro!</string>
+    <string name="template_bem_vindo_user">Bem vindo %s</string>
 </resources>

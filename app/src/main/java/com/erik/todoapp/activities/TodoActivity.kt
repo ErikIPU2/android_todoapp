@@ -28,6 +28,9 @@ class TodoActivity : AppCompatActivity() {
 
         this.session = Session(this)
 
+        Toast.makeText(this, getString(R.string.template_bem_vindo_user)
+            .format(session.loggedUser?.name), Toast.LENGTH_SHORT).show()
+
         this.viewHolder = ViewHolder(
             findViewById(R.id.toolbar_todo_toolbar),
             findViewById(R.id.fab_todo_add_todo)

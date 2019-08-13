@@ -3,7 +3,9 @@ package com.erik.todoapp.database
 import android.content.ContentValues
 import android.content.Context
 import android.provider.BaseColumns
+import com.erik.todoapp.database.todo.TodoContract.TodoEntry
 import com.erik.todoapp.database.user.UserContract.UserEntry
+import com.erik.todoapp.util.data.Todo
 import com.erik.todoapp.util.data.User
 
 class DbOperationHelper(context: Context) {
@@ -128,7 +130,7 @@ class DbOperationHelper(context: Context) {
 
     }
 
-    public fun getUser(id: Long): User? {
+    fun getUser(id: Long): User? {
         val db  = dbHelper.readableDatabase
 
         val projection = arrayOf(BaseColumns._ID, UserEntry.COLUMN_NAME_NAME,
@@ -159,5 +161,21 @@ class DbOperationHelper(context: Context) {
                 User(id, name, email, password)
             }
         }
+    }
+
+    fun addTodo(todo: Todo): Long? {
+        val db = dbHelper.writableDatabase
+
+        val values = ContentValues().apply {
+            put(TodoEntry.COLUMN_NAME_TITLE, todo.title)
+            put(TodoEntry.COLUMN_NAME_DATA, todo.data)
+            put(TodoEntry.COLUMN_NAME_PRIORITY, todo.priority)
+            put(TodoEntry.COLUMN_NAME_DONE, todo.isDone)
+            put(TodoEntry.COLUMN_NAME_USER_ID, todo.userId)
+        }
+
+        val newRowId = db?.insert(TodoEntry.TABLE_NAME, null, values)
+
+        return newRowId
     }
 }
