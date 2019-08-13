@@ -53,7 +53,6 @@ class CreateTodoActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         viewHolder.lowRadioButton.isChecked = true
-
     }
 
 

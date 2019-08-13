@@ -95,6 +95,8 @@
             android:text="@string/criar"
             android:layout_marginTop="30dp"
             android:layout_marginHorizontal="50dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="#fff"
             android:id="@+id/button_create_account_create"/>
 
     </LinearLayout>
