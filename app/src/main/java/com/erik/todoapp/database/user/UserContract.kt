@@ -17,5 +17,5 @@ object UserContract {
                     "${UserEntry.COLUMN_NAME_EMAIL} TEXT," +
                     "${UserEntry.COLUMN_NAME_PASSWORD} TEXT)"
 
-    const val SQL_DELETE_ENTRIES = "DROP DATABASE IF EXIST ${UserEntry.TABLE_NAME}"
+    const val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS ${UserEntry.TABLE_NAME}"
 }

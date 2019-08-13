@@ -9,6 +9,7 @@ object TodoContract {
         const val COLUMN_NAME_DESCRIPTION = "description"
         const val COLUMN_NAME_DONE = "done"
         const val COLUMN_NAME_DATA = "data"
+        const val COLUMN_NAME_PRIORITY = "priority"
         const val COLUMN_NAME_USER_ID = "user_id"
     }
 
@@ -18,9 +19,10 @@ object TodoContract {
                     "${TodoEntry.COLUMN_NAME_DESCRIPTION} TEXT," +
                     "${TodoEntry.COLUMN_NAME_DONE} INTEGER," +
                     "${TodoEntry.COLUMN_NAME_DATA} TEXT," +
+                    "${TodoEntry.COLUMN_NAME_PRIORITY} INTEGER," +
                     "${TodoEntry.COLUMN_NAME_USER_ID} INTEGER," +
                     "FOREIGN KEY(${TodoEntry.COLUMN_NAME_USER_ID}) REFERENCES" +
                     " ${UserContract.UserEntry.TABLE_NAME}(${BaseColumns._ID}))"
 
-    const val SQL_DELETE_ENTRIES = "DROP DATABASE IF EXIST ${TodoEntry.TABLE_NAME}"
+    const val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS ${TodoEntry.TABLE_NAME}"
 }
