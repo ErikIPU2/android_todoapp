@@ -178,4 +178,37 @@ class DbOperationHelper(context: Context) {
 
         return newRowId
     }
+
+    fun getTodos(user: User): Array<Todo> {
+        val db = dbHelper.readableDatabase
+
+        val projection = arrayOf(BaseColumns._ID, TodoEntry.COLUMN_NAME_TITLE,
+            TodoEntry.COLUMN_NAME_DATA, TodoEntry.COLUMN_NAME_DONE)
+
+        val selection = "${TodoEntry.COLUMN_NAME_USER_ID} = ?"
+        val selectionArgs = arrayOf(user.id.toString())
+
+        val cursor = db.query(
+            TodoEntry.TABLE_NAME,
+            projection,
+            selection,
+            selectionArgs,
+            null,
+            null,
+            null
+        )
+
+        with(cursor) {
+            val todos = mutableListOf<Todo>()
+            while (moveToNext()) {
+                val id:Long = getLong(getColumnIndex(BaseColumns._ID))
+                val title:String = getString(getColumnIndex(TodoEntry.COLUMN_NAME_TITLE))
+                val data:String = getString(getColumnIndex(TodoEntry.COLUMN_NAME_DATA))
+                val done:Boolean = getInt(getColumnIndex(TodoEntry.COLUMN_NAME_DONE)) == 1
+                val todo = Todo(id,  title, data, 0, done, user.id!!)
+                todos.add(todo)
+            }
+            return todos.toTypedArray()
+        }
+    }
 }

@@ -13,6 +13,7 @@ import com.erik.todoapp.database.DbOperationHelper
 import com.erik.todoapp.util.Session
 import com.erik.todoapp.util.data.Todo
 import com.erik.todoapp.util.time.Data
+import com.erik.todoapp.util.time.DataInvalidaException
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import java.text.SimpleDateFormat
@@ -79,22 +80,25 @@ class CreateTodoActivity : AppCompatActivity() {
         if (this.checkInputs()) {
             val title = viewHolder.titleTextInputEditText.text.toString()
             val dataString = viewHolder.dataTextInputEditText.text.toString()
+            val data:String
+            try {
+                data = Data.formatData(dataString).formatDataUniversal
 
-            val data = Data.formatData(dataString).formatDataUniversal
+                val priority: Int = this.getPriority()
 
-            val priority: Int = this.getPriority()
+                val todo = Todo(null, title, data, priority, false,
+                    session.loggedUser?.id!!)
 
-            val todo = Todo(null, title, data, priority, false,
-                session.loggedUser?.id!!)
+                if (dbOperationHelper.addTodo(todo) != null) {
+                    this.finish()
+                } else {
+                    Toast.makeText(this, getString(R.string.ocorreu_algum_erro),
+                        Toast.LENGTH_LONG).show()
+                }
 
-            if (dbOperationHelper.addTodo(todo) != null) {
-                this.finish()
-            } else {
-                Toast.makeText(this, getString(R.string.ocorreu_algum_erro),
-                    Toast.LENGTH_LONG).show()
+            } catch (e: DataInvalidaException) {
+                viewHolder.dataTextInputLayout.error = e.message
             }
-
-
         }
     }
 

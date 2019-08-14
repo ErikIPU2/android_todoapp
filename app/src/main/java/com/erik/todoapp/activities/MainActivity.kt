@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.erik.todoapp.R
 import com.erik.todoapp.database.DbOperationHelper
 import com.erik.todoapp.util.Session
@@ -59,6 +60,8 @@ class MainActivity : AppCompatActivity() {
     private fun checkLoggedAndOpenTodoActivity(): Unit {
         this.session.updateLogged()
         if (this.session.isLogged()) {
+            Toast.makeText(this, getString(R.string.template_bem_vindo_user)
+                .format(session.loggedUser?.name), Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, TodoActivity::class.java))
         }
     }

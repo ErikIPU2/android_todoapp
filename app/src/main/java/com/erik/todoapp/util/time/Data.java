@@ -48,20 +48,21 @@ public class Data {
      * @param data Objeto Data criado
      * @return Data
      */
-    public static Data formatData(String data) {
+    public static Data formatData(String data) throws DataInvalidaException {
         //Divide a String pelo "/" e depois cria um objeto Data novo
         String[] datas = data.split("/");
+
+        if (datas.length != 3) {
+            throw new DataInvalidaException("Formato invalido");
+        }
+
         int dia = Integer.parseInt(datas[0]);
         int mes = Integer.parseInt(datas[1]);
         int ano = Integer.parseInt(datas[2]);
 
-        try {
-            Data temp = new Data(dia, mes, ano);
-            return temp;
-        } catch (DataInvalidaException e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
+
+        Data temp = new Data(dia, mes, ano);
+        return temp;
     }
 
     /**

@@ -32,4 +32,5 @@
     <string name="voce_precisa_informar_a_data">Voce precisa informar a data</string>
     <string name="ocorreu_algum_erro">Ocorreu algum erro!</string>
     <string name="template_bem_vindo_user">Bem vindo %s</string>
+    <string name="data_invalida">Data invalida</string>
 </resources>
