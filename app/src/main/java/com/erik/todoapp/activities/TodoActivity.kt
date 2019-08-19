@@ -1,12 +1,12 @@
 package com.erik.todoapp.activities
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
 import android.widget.CheckBox
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,18 +24,40 @@ class TodoActivity : AppCompatActivity() {
         val addTodoFloatingActionButton: FloatingActionButton
     )
 
-    private class RecyclerAdapter(private val todos: Array<Todo>) :
-        RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+    private class RecyclerAdapter(private var todos: Array<Todo>) :
+        RecyclerView.Adapter<RecyclerAdapter.ViewHolder>(){
 
-        class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        class ViewHolder(val todos: Array<Todo>, itemView: View) :
+            RecyclerView.ViewHolder(itemView), View.OnClickListener {
+
             val titleTextView:TextView = itemView.findViewById(R.id.text_list_todo_title)
             val dataTextView:TextView = itemView.findViewById(R.id.text_list_todo_data)
             val doneCheckBox:CheckBox = itemView.findViewById(R.id.checkbox_list_todo_done)
+
+            init {
+                doneCheckBox.setOnClickListener(this)
+            }
+
+            override fun onClick(view: View?) {
+                val position:Int = adapterPosition
+                when (view?.id) {
+                    R.id.checkbox_list_todo_done -> {
+                        val todo:Todo = this.todos[position]
+                        val isDone:Boolean = doneCheckBox.isChecked
+                        updateCheckTodo(todo, isDone, view.context)
+                    }
+                }
+            }
+            private fun updateCheckTodo(todo: Todo, isDone:Boolean, context: Context) {
+                val dbOperationHelper = DbOperationHelper(context)
+                dbOperationHelper.updateTodoIsDone(todo, isDone)
+            }
+
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
                 RecyclerAdapter.ViewHolder {
-            return ViewHolder(LayoutInflater.from(parent.context)
+            return ViewHolder(todos, LayoutInflater.from(parent.context)
                 .inflate(R.layout.list_todo_view, parent, false))
         }
 
@@ -43,6 +65,11 @@ class TodoActivity : AppCompatActivity() {
             holder.titleTextView.text = todos[position].title
             holder.dataTextView.text = todos[position].data
             holder.doneCheckBox.isChecked = todos[position].isDone
+        }
+
+        fun updateValues(todos: Array<Todo>) {
+            this.todos = todos
+            notifyDataSetChanged()
         }
 
         override fun getItemCount(): Int = todos.size
@@ -71,11 +98,6 @@ class TodoActivity : AppCompatActivity() {
         setSupportActionBar(viewHolder.toolbar)
         viewHolder.addTodoFloatingActionButton.setOnClickListener(this.fabAddTodoOnClick)
 
-    }
-
-    override fun onResume() {
-        super.onResume()
-
         viewManager = LinearLayoutManager(this)
 
         val todos:Array<Todo> = dbOperationHelper.getTodos(session.loggedUser!!)
@@ -87,6 +109,12 @@ class TodoActivity : AppCompatActivity() {
             layoutManager = viewManager
             adapter = viewAdapter
         }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        this.updateTodoList()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -106,6 +134,12 @@ class TodoActivity : AppCompatActivity() {
 
     private val fabAddTodoOnClick = View.OnClickListener { view ->
         startActivity(Intent(this, CreateTodoActivity::class.java))
+    }
+
+    private fun updateTodoList() {
+        (this.viewAdapter as RecyclerAdapter).updateValues(
+            this.dbOperationHelper.getTodos(this.session.loggedUser!!)
+        )
     }
 
     private fun close() {

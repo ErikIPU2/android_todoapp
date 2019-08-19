@@ -211,4 +211,22 @@ class DbOperationHelper(context: Context) {
             return todos.toTypedArray()
         }
     }
+
+    fun updateTodoIsDone(todo: Todo, isDone: Boolean) {
+        val db = dbHelper.writableDatabase
+
+        val values = ContentValues().apply {
+            put(TodoEntry.COLUMN_NAME_DONE, isDone)
+        }
+
+        val selection = "${BaseColumns._ID} = ?"
+        val selectionArgs = arrayOf(todo.id.toString())
+
+        db.update(
+            TodoEntry.TABLE_NAME,
+            values,
+            selection,
+            selectionArgs
+        )
+    }
 }
